@@ -1,31 +1,23 @@
 package com.example.kt_ki.move2live;
 
-import android.app.Activity;
-import android.app.ActivityGroup;
-import android.app.LocalActivityManager;
-import android.app.TabActivity;
-import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.view.Menu;
+import android.support.v4.app.FragmentActivity;
 import android.widget.TabHost;
 
-import static android.R.id.tabcontent;
-
-public class MainActivity extends FragmentActivity {
+public class TabActivity extends FragmentActivity {
     TabHost tabHost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_tab);
 
-        tabHost = (TabHost) findViewById(R.id.tabHost);
+        tabHost = (TabHost) findViewById(android.R.id.tabhost);
         tabHost.setup();
 
         TabHost.TabSpec tabSpec1 = tabHost.newTabSpec("Profile");
         tabSpec1.setContent(R.id.tab1);
-//        tabSpec1.setContent(new Intent(MainActivity.this , ProfileFragment.class));
+//        tabSpec1.setContent(new Intent(TabActivity.this , ProfileFragment.class));
         tabSpec1.setIndicator("Profile");
         tabHost.addTab(tabSpec1);
 
@@ -40,6 +32,12 @@ public class MainActivity extends FragmentActivity {
 //        tabSpec3.setContent(new Intent(getApplicationContext() , CommunityFragment.class));
         tabSpec3.setIndicator("Community");
         tabHost.addTab(tabSpec3);
+
+        TabHost.TabSpec tabSpec4 = tabHost.newTabSpec("MyBlog");
+        tabSpec4.setContent(R.id.tab4);
+//        tabSpec3.setContent(new Intent(getApplicationContext() , CommunityFragment.class));
+        tabSpec4.setIndicator("MyBlog");
+        tabHost.addTab(tabSpec4);
 
         tabHost.setCurrentTab(0);
     }

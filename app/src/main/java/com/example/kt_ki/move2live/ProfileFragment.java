@@ -18,7 +18,9 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.profile_layout, container, false);
+        View view = inflater.inflate(R.layout.profile_layout,container , false);
+        TextView textView = (TextView) view.findViewById(R.id.proText);
+        textView.setText(R.string.hello_blank_fragment);
+        return view;
     }
-
 }
