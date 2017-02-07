@@ -1,7 +1,10 @@
 package com.example.kt_ki.move2live;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.widget.TabHost;
 
 public class TabActivity extends FragmentActivity {
@@ -33,12 +36,18 @@ public class TabActivity extends FragmentActivity {
         tabSpec3.setIndicator("Community");
         tabHost.addTab(tabSpec3);
 
-        TabHost.TabSpec tabSpec4 = tabHost.newTabSpec("MyBlog");
-        tabSpec4.setContent(R.id.tab4);
-//        tabSpec3.setContent(new Intent(getApplicationContext() , CommunityFragment.class));
-        tabSpec4.setIndicator("MyBlog");
-        tabHost.addTab(tabSpec4);
+//        TabHost.TabSpec tabSpec4 = tabHost.newTabSpec("MyBlog");
+//        tabSpec4.setContent(R.id.tab4);
+////        tabSpec3.setContent(new Intent(getApplicationContext() , CommunityFragment.class));
+//        tabSpec4.setIndicator("MyBlog");
+//        tabHost.addTab(tabSpec4);
 
         tabHost.setCurrentTab(0);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add("Setting");
+        return super.onCreateOptionsMenu(menu);
     }
 }
