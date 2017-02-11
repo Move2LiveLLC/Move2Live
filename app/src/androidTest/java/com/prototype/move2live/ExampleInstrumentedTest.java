@@ -1,4 +1,4 @@
-package com.example.kt_ki.move2live;
+package com.prototype.move2live;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.kt_ki.move2live", appContext.getPackageName());
+        assertEquals("com.prototype.move2live", appContext.getPackageName());
     }
 }

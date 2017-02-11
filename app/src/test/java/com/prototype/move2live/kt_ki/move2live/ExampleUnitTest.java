@@ -1,4 +1,4 @@
-package com.example.kt_ki.move2live;
+package com.prototype.move2live.kt_ki.move2live;
 
 import org.junit.Test;
 

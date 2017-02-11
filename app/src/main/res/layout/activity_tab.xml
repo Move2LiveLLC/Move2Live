@@ -32,7 +32,7 @@
                     android:orientation="vertical">
 
                     <fragment
-                        android:name="com.example.kt_ki.move2live.ProfileFragment"
+                        android:name="com.prototype.move2live.ProfileFragment"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
@@ -47,7 +47,7 @@
                     android:orientation="vertical">
 
                     <fragment
-                        android:name="com.example.kt_ki.move2live.ObjectiveFragment"
+                        android:name="com.prototype.move2live.ObjectiveFragment"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
@@ -62,7 +62,7 @@
                     android:orientation="vertical">
 
                     <fragment
-                        android:name="com.example.kt_ki.move2live.CommunityFragment"
+                        android:name="com.prototype.move2live.CommunityFragment"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
@@ -76,7 +76,7 @@
                     <!--android:orientation="vertical">-->
 
                     <!--<fragment-->
-                        <!--android:name="com.example.kt_ki.move2live.BlogFragment"-->
+                        <!--android:name="com.prototype.move2live.BlogFragment"-->
                         <!--android:layout_width="match_parent"-->
                         <!--android:layout_height="match_parent">-->
 

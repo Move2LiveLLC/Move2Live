@@ -1,9 +1,7 @@
-package com.example.kt_ki.move2live;
+package com.prototype.move2live;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.TabHost;
 
