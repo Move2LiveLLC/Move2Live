@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "548796050845",
+    "firebase_url": "https://moveproto.firebaseio.com",
+    "project_id": "moveproto",
+    "storage_bucket": "moveproto.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:548796050845:android:d61c7fa368dec215",
+        "android_client_info": {
+          "package_name": "com.prototype.move2live"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "548796050845-54pr6tm9stp1ul38cdcdda2fdq1jmnh2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.prototype.move2live",
+            "certificate_hash": "AAF9C4FB939DB087F2D4AA55355AF35DAF6284CF"
+          }
+        },
+        {
+          "client_id": "548796050845-oj8gd3lh5hbguvejsortv0t4fl02osae.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhHb_7kOcthN4Iwdgs23pJGzxp6YbMzzM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "548796050845-oj8gd3lh5hbguvejsortv0t4fl02osae.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
