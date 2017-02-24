@@ -1,14 +1,14 @@
-package com.move2live.moveproto;
+package com.prototype.move2live;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.support.annotation.NonNull;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
@@ -65,6 +65,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             if (mFirebaseUser.getPhotoUrl() != null) {
                 mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
             }
+            SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString(getString(R.string.preference_username), mUsername).apply();
+            editor.putString(getString(R.string.preference_photo_url), mPhotoUrl).apply();
         }
     }
 
@@ -80,6 +84,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
+                SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+                String username = sharedPref.getString(getString(R.string.preference_username), "default user");
+                String photo = sharedPref.getString(getString(R.string.preference_photo_url), "default url");
+                Log.d(TAG, photo);
+                Log.d(TAG, username);
                 return true;
             case R.id.sign_out_menu:
                 mFirebaseAuth.signOut();
@@ -93,6 +102,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         }
     }
 
+
+    /*
+        This is actually just to easily get the key used for facebook authentication.
+        It's easier than going through SSL and keytool
+     */
     private void getHashKey(){
         try {
             PackageInfo info = getPackageManager().getPackageInfo(

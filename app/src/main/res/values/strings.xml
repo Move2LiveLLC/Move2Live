@@ -9,4 +9,8 @@
     <string name="facebook_app_id">272421549856711</string>
     <!-- if your App ID is 1234567, you should use fb1234567 -->
     <string name="fb_login_protocol_scheme">fb272421549856711</string>
+
+    <string name="preference_file_key">preference_key_user</string>
+    <string name="preference_username">pref_username</string>
+    <string name="preference_photo_url">pref_photo_url</string>
 </resources>
