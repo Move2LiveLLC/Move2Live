@@ -27,16 +27,9 @@
 
         </android.support.design.widget.AppBarLayout>
 
-
-        <!--
-        include main content layout here
-
         <include layout="@layout/content_main" />
 
-        -->
-
     </android.support.design.widget.CoordinatorLayout>
-
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_view"
@@ -48,6 +41,5 @@
         app:itemTextColor="@color/colorPrimary"
         app:itemIconTint="@color/colorPrimary"
         app:menu="@menu/navigation_drawer" />
-
 
 </android.support.v4.widget.DrawerLayout>

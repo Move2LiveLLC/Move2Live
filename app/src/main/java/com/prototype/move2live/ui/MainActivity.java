@@ -8,6 +8,8 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -35,7 +37,7 @@ import java.security.NoSuchAlgorithmException;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
 
     private static final String TAG = MainActivity.class.getSimpleName();
     public static final String ANONYMOUS = "anonymous";
@@ -66,7 +68,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         drawerLayout.setDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                selectDrawerItem(item);
+                return true;
+            }
+        });
 
         getHashKey();
 
@@ -149,26 +157,48 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         Toast.makeText(this, "Google Play Services error.", Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
+    private void selectDrawerItem(MenuItem menuItem){
 
-        if (id == R.id.nav_home) {
-            // Handle the camera action
-        } else if (id == R.id.nav_community) {
-
-        } else if (id == R.id.nav_objectives) {
-
-        } else if (id == R.id.nav_blog) {
-
-        } else if (id == R.id.nav_about) {
-
+        // Create a new fragment and specify the fragment to show based on nav item clicked
+        Fragment fragment = null;
+        Class fragmentClass;
+        switch(menuItem.getItemId()) {
+            case R.id.nav_home:
+                fragmentClass = ProfileFragment.class;
+                break;
+            case R.id.nav_community:
+                fragmentClass = CommunityFragment.class;
+                break;
+            case R.id.nav_objectives:
+                fragmentClass = ObjectiveFragment.class;
+                break;
+            case R.id.nav_blog:
+                fragmentClass = BlogFragment.class;
+                break;
+            case R.id.nav_about:
+                fragmentClass = AboutFragment.class;
+                break;
+            default:
+                fragmentClass = ProfileFragment.class;
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Insert the fragment by replacing any existing fragment
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.content_main, fragment).commit();
+
+        // Highlight the selected item has been done by NavigationView
+        menuItem.setChecked(true);
+        // Set action bar title
+        setTitle(menuItem.getTitle());
+        // Close the navigation drawer
+        drawerLayout.closeDrawers();
+
     }
 
     @Override
