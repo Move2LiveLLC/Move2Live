@@ -19,6 +19,13 @@ public class AboutFragment extends Fragment {
         // Required empty public constructor
     }
 
+    /*
+        modify as needed
+     */
+    public AboutFragment newInstance(){
+        return new AboutFragment();
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
