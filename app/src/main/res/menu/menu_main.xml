@@ -11,5 +11,6 @@
     <item
         android:id="@+id/sign_out_menu"
         android:title="@string/sign_out"
+        android:orderInCategory="101"
         app:showAsAction="never"/>
 </menu>

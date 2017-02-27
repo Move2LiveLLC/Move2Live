@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.prototype.move2live;
+package com.prototype.move2live.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -45,6 +45,7 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.prototype.move2live.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

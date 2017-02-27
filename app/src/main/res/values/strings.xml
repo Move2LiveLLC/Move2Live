@@ -10,7 +10,18 @@
     <!-- if your App ID is 1234567, you should use fb1234567 -->
     <string name="fb_login_protocol_scheme">fb272421549856711</string>
 
+    <!-- keys to profile id and photo -->
     <string name="preference_file_key">preference_key_user</string>
     <string name="preference_username">pref_username</string>
     <string name="preference_photo_url">pref_photo_url</string>
+    <string name="title_activity_edit_profile">Edit Profile</string>
+
+    <!-- navigation strings for nav drawer -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_menu_home">Home</string>
+    <string name="nav_menu_community">Community</string>
+    <string name="nav_menu_objectives">Objectives</string>
+    <string name="nav_menu_blog">My Blog</string>
+    <string name="nav_menu_about">About Us</string>
 </resources>
