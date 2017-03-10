@@ -57,7 +57,7 @@ public class SignInActivity extends AppCompatActivity implements
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
 
-    @BindView(R.id.sign_in_button)
+    @BindView(R.id.google_login_button)
     SignInButton mSignInButton;
 
     private GoogleApiClient mGoogleApiClient;
@@ -75,9 +75,6 @@ public class SignInActivity extends AppCompatActivity implements
         AppEventsLogger.activateApp(getApplication());
         setContentView(R.layout.activity_sign_in);
         ButterKnife.bind(this);
-
-        // Assign fields
-        mSignInButton = (SignInButton) findViewById(R.id.sign_in_button);
 
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -112,7 +109,7 @@ public class SignInActivity extends AppCompatActivity implements
         // [START initialize_fblogin]
         // Initialize Facebook Login button
         mCallbackManager = CallbackManager.Factory.create();
-        LoginButton loginButton = (LoginButton) findViewById(R.id.button_facebook_login);
+        LoginButton loginButton = (LoginButton) findViewById(R.id.facebook_login_button);
         loginButton.setReadPermissions("email", "public_profile");
         loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -148,7 +145,7 @@ public class SignInActivity extends AppCompatActivity implements
         }
     }
 
-    @OnClick(R.id.sign_in_button)
+    @OnClick(R.id.google_login_button)
     public void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
