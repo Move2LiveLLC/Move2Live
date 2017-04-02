@@ -141,6 +141,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             return;
         } else {
             mUsername = mFirebaseUser.getDisplayName();
+            if(mUsername == null){
+                mUsername = mFirebaseUser.getEmail();
+            }
             if (mFirebaseUser.getPhotoUrl() != null) {
                 mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
             }

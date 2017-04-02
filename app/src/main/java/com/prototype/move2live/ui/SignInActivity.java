@@ -19,7 +19,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -56,6 +59,9 @@ public class SignInActivity extends AppCompatActivity implements
 
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
+
+    @BindView(R.id.sign_in_email) EditText mEmailField;
+    @BindView(R.id.sign_in_password) EditText mPasswordField;
 
     @BindView(R.id.google_login_button)
     SignInButton mSignInButton;
@@ -146,9 +152,42 @@ public class SignInActivity extends AppCompatActivity implements
     }
 
     @OnClick(R.id.google_login_button)
-    public void signIn() {
+    public void signInGoogle() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    @OnClick(R.id.email_login_button)
+    public void signInEmail() {
+        String email = mEmailField.getText().toString();
+        String password = mPasswordField.getText().toString();
+
+        Log.d(TAG, "signIn:" + email);
+        if (!validateForm()) {
+            return;
+        }
+
+        // [START sign_in_with_email]
+        mFirebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
+
+                        // If sign in fails, display a message to the user. If sign in succeeds
+                        // the auth state listener will be notified and logic to handle the
+                        // signed in user can be handled in the listener.
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "signInWithEmail:failed", task.getException());
+                            Toast.makeText(SignInActivity.this, R.string.auth_failed_email,
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            startActivity(new Intent(SignInActivity.this, MainActivity.class));
+                            finish();
+                        }
+                    }
+                });
+        // [END sign_in_with_email]
     }
 
     @Override
@@ -229,4 +268,82 @@ public class SignInActivity extends AppCompatActivity implements
                 });
     }
     // [END auth_with_facebook]
+
+    private boolean validateForm() {
+        boolean valid = true;
+
+        String email = mEmailField.getText().toString();
+        if (TextUtils.isEmpty(email)) {
+            mEmailField.setError("Required.");
+            valid = false;
+        } else {
+            mEmailField.setError(null);
+        }
+
+        String password = mPasswordField.getText().toString();
+        if (TextUtils.isEmpty(password)) {
+            mPasswordField.setError("Required.");
+            valid = false;
+        } else {
+            mPasswordField.setError(null);
+        }
+
+        return valid;
+    }
+
+//    private void sendEmailVerification() {
+//        // Disable button
+//        findViewById(R.id.verify_email_button).setEnabled(false);
+//
+//        // Send verification email
+//        // [START send_email_verification]
+//        final FirebaseUser user = mFirebaseAuth.getCurrentUser();
+//        user.sendEmailVerification()
+//                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        // [START_EXCLUDE]
+//                        // Re-enable button
+//                        findViewById(R.id.verify_email_button).setEnabled(true);
+//
+//                        if (task.isSuccessful()) {
+//                            Toast.makeText(SignInActivity.this,
+//                                    "Verification email sent to " + user.getEmail(),
+//                                    Toast.LENGTH_SHORT).show();
+//                        } else {
+//                            Log.e(TAG, "sendEmailVerification", task.getException());
+//                            Toast.makeText(SignInActivity.this,
+//                                    "Failed to send verification email.",
+//                                    Toast.LENGTH_SHORT).show();
+//                        }
+//                        // [END_EXCLUDE]
+//                    }
+//                });
+//        // [END send_email_verification]
+//    }
+
+//    private void createAccount(String email, String password) {
+//        Log.d(TAG, "createAccount:" + email);
+//        if (!validateForm()) {
+//            return;
+//        }
+//
+//        // [START create_user_with_email]
+//        mFirebaseAuth.createUserWithEmailAndPassword(email, password)
+//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
+//
+//                        // If sign in fails, display a message to the user. If sign in succeeds
+//                        // the auth state listener will be notified and logic to handle the
+//                        // signed in user can be handled in the listener.
+//                        if (!task.isSuccessful()) {
+//                            Toast.makeText(SignInActivity.this, R.string.auth_failed,
+//                                    Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                });
+//        // [END create_user_with_email]
+//    }
 }

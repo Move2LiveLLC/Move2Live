@@ -1,8 +1,11 @@
 package com.prototype.move2live.ui;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.TextViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +17,8 @@ import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.prototype.move2live.R;
+
+import org.w3c.dom.Text;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -72,6 +77,15 @@ public class ProfileFragment extends Fragment {
 // is not necessary
         graph.getGridLabelRenderer().setHumanRounding(false);
 
+        TextView userView = (TextView) view.findViewById(R.id.profile_username);
+        tempShowUsernameForDebug(userView);
+
         return view;
+    }
+
+    private void tempShowUsernameForDebug(TextView userView){
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        String defaultUsername = "Username";
+        userView.setText(sharedPref.getString(getString(R.string.preference_username), defaultUsername));
     }
 }
