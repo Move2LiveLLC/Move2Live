@@ -185,6 +185,16 @@ public class SignInActivity extends AppCompatActivity implements
         // [END sign_in_with_email]
     }
 
+    @OnClick(R.id.btn_reset_password)
+    public void resetPassword(){
+        startActivity(new Intent(SignInActivity.this, ResetPasswordActivity.class));
+    }
+
+    @OnClick(R.id.btn_register)
+    public void registerAccount(){
+        startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
+    }
+
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         // An unresolvable error has occurred and Google APIs (including Sign-In) will not
