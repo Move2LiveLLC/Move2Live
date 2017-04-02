@@ -29,8 +29,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         tools:text="Username"
-        android:textColor="@android:color/black"
-        android:id="@+id/profile_username"/>
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/profile_username"
+        android:paddingBottom="100dp"/>
 
     <com.jjoe64.graphview.GraphView
         android:id="@+id/graph"
