@@ -22,7 +22,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -38,7 +37,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -60,11 +58,8 @@ public class SignInActivity extends AppCompatActivity implements
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
 
-    @BindView(R.id.sign_in_email) EditText mEmailField;
-    @BindView(R.id.sign_in_password) EditText mPasswordField;
-
-    @BindView(R.id.google_login_button)
-    SignInButton mSignInButton;
+    @BindView(R.id.email) EditText mEmailField;
+    @BindView(R.id.password) EditText mPasswordField;
 
     private GoogleApiClient mGoogleApiClient;
 
