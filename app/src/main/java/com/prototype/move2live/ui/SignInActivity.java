@@ -91,7 +91,6 @@ public class SignInActivity extends AppCompatActivity implements
         // Initialize FirebaseAuth
         mFirebaseAuth = FirebaseAuth.getInstance();
 
-        // [START auth_state_listener]
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -105,31 +104,8 @@ public class SignInActivity extends AppCompatActivity implements
                 }
             }
         };
-        // [END auth_state_listener]
 
-        // [START initialize_fblogin]
-        // Initialize Facebook Login button
-        mCallbackManager = CallbackManager.Factory.create();
-        LoginButton loginButton = (LoginButton) findViewById(R.id.facebook_login_button);
-        loginButton.setReadPermissions("email", "public_profile");
-        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Log.d(TAG, "facebook:onSuccess:" + loginResult);
-                handleFacebookAccessToken(loginResult.getAccessToken());
-            }
-
-            @Override
-            public void onCancel() {
-                Log.d(TAG, "facebook:onCancel");
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Log.d(TAG, "facebook:onError", error);
-            }
-        });
-        // [END initialize_fblogin]
+        setupFacebook();
     }
 
     @Override
@@ -247,6 +223,32 @@ public class SignInActivity extends AppCompatActivity implements
                 });
     }
 
+    // [START initialize_fblogin]
+    // Initialize Facebook Login button
+    private void setupFacebook(){
+        mCallbackManager = CallbackManager.Factory.create();
+        LoginButton loginButton = (LoginButton) findViewById(R.id.facebook_login_button);
+        loginButton.setReadPermissions("email", "public_profile");
+        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Log.d(TAG, "facebook:onSuccess:" + loginResult);
+                handleFacebookAccessToken(loginResult.getAccessToken());
+            }
+
+            @Override
+            public void onCancel() {
+                Log.d(TAG, "facebook:onCancel");
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Log.d(TAG, "facebook:onError", error);
+            }
+        });
+    }
+    // [END initialize_fblogin]
+
     // [START auth_with_facebook]
     private void handleFacebookAccessToken(AccessToken token) {
         Log.d(TAG, "handleFacebookAccessToken:" + token);
@@ -296,59 +298,4 @@ public class SignInActivity extends AppCompatActivity implements
         return valid;
     }
 
-//    private void sendEmailVerification() {
-//        // Disable button
-//        findViewById(R.id.verify_email_button).setEnabled(false);
-//
-//        // Send verification email
-//        // [START send_email_verification]
-//        final FirebaseUser user = mFirebaseAuth.getCurrentUser();
-//        user.sendEmailVerification()
-//                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<Void> task) {
-//                        // [START_EXCLUDE]
-//                        // Re-enable button
-//                        findViewById(R.id.verify_email_button).setEnabled(true);
-//
-//                        if (task.isSuccessful()) {
-//                            Toast.makeText(SignInActivity.this,
-//                                    "Verification email sent to " + user.getEmail(),
-//                                    Toast.LENGTH_SHORT).show();
-//                        } else {
-//                            Log.e(TAG, "sendEmailVerification", task.getException());
-//                            Toast.makeText(SignInActivity.this,
-//                                    "Failed to send verification email.",
-//                                    Toast.LENGTH_SHORT).show();
-//                        }
-//                        // [END_EXCLUDE]
-//                    }
-//                });
-//        // [END send_email_verification]
-//    }
-
-//    private void createAccount(String email, String password) {
-//        Log.d(TAG, "createAccount:" + email);
-//        if (!validateForm()) {
-//            return;
-//        }
-//
-//        // [START create_user_with_email]
-//        mFirebaseAuth.createUserWithEmailAndPassword(email, password)
-//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
-//
-//                        // If sign in fails, display a message to the user. If sign in succeeds
-//                        // the auth state listener will be notified and logic to handle the
-//                        // signed in user can be handled in the listener.
-//                        if (!task.isSuccessful()) {
-//                            Toast.makeText(SignInActivity.this, R.string.auth_failed,
-//                                    Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                });
-//        // [END create_user_with_email]
-//    }
 }

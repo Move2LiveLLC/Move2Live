@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawerLayout.setDrawerListener(toggle);
+        drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -81,7 +81,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         getHashKey();
         setUpSocialsLogin();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -101,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 mUsername = ANONYMOUS;
                 LoginManager.getInstance().logOut();
                 startActivity(new Intent(this, SignInActivity.class));
+                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -117,9 +117,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
@@ -134,6 +133,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         // Initialize Firebase Auth
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
+
         if (mFirebaseUser == null) {
             // Not signed in, launch the Sign In activity
             startActivity(new Intent(this, SignInActivity.class));
@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             return;
         } else {
             mUsername = mFirebaseUser.getDisplayName();
-            if(mUsername == null){
+            if (mUsername == null) {
                 mUsername = mFirebaseUser.getEmail();
             }
             if (mFirebaseUser.getPhotoUrl() != null) {

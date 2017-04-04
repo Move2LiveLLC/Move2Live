@@ -46,7 +46,7 @@
     <string name="btn_login_google">Sign In with Google</string>
     <string name="btn_login_facebook">Sign In with Facebook</string>
     <string name="btn_link_to_register">Do not have an account? Create Account.</string>
-    <string name="btn_link_to_login">Already registered. Login Me!</string>
+    <string name="btn_link_to_login">Already registered. Log me in!</string>
     <string name="title_activity_reset_password">ResetPasswordActivity</string>
     <string name="btn_forgot_password">Forgot your password?</string>
     <string name="btn_reset_password">Reset Password</string>
