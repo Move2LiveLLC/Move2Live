@@ -1,5 +1,7 @@
 package com.prototype.move2live.ui;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,9 +16,14 @@ import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.prototype.move2live.R;
+import com.prototype.move2live.util.CircleTransform;
+import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
 import java.util.Date;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by kt_ki on 2/5/2017.
@@ -24,16 +31,16 @@ import java.util.Date;
 
 public class ProfileFragment extends Fragment {
 
+    @BindView(R.id.imgTran) ImageView profileImageView;
+    @BindView(R.id.profile_username) TextView userTextView;
+    @BindView(R.id.graph) GraphView graphView;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.profile_layout, container, false);
-        TextView textView = (TextView) view.findViewById(R.id.proText);
-        textView.setText("<User Name>");
-
-        ImageView imageView = (ImageView) view.findViewById(R.id.imgTran);
-        imageView.setImageResource(R.drawable.person_flat);
+        ButterKnife.bind(this, view);
 
         // generate Dates
         Calendar calendar = Calendar.getInstance();
@@ -43,35 +50,57 @@ public class ProfileFragment extends Fragment {
         calendar.add(Calendar.DATE, 1);
         Date d3 = calendar.getTime();
 
-        GraphView graph = (GraphView) view.findViewById(R.id.graph);
-        graph.setTitle("Daily Mood Graph");
-        graph.setTitleColor(R.color.colorAccent);
+        graphView.setTitle("Daily Mood Graph");
+        graphView.setTitleColor(R.color.colorAccent);
 
-// you can directly pass Date objects to DataPoint-Constructor
-// this will convert the Date to double via Date#getTime()
+        // you can directly pass Date objects to DataPoint-Constructor
+        // this will convert the Date to double via Date#getTime()
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[]{
                 new DataPoint(d1, 3),
                 new DataPoint(d2, 4),
                 new DataPoint(d3, 1)
         });
 
-        graph.addSeries(series);
+        graphView.addSeries(series);
 
-// set date label formatter
-        graph.getGridLabelRenderer()
+        // set date label formatter
+        graphView.getGridLabelRenderer()
                 .setLabelFormatter(new DateAsXAxisLabelFormatter(getActivity()));
-        graph.getGridLabelRenderer()
+        graphView.getGridLabelRenderer()
                 .setNumHorizontalLabels(3); // only 4 because of the space
 
-// set manual x bounds to have nice steps
-        graph.getViewport().setMinX(d1.getTime());
-        graph.getViewport().setMaxX(d3.getTime());
-        graph.getViewport().setXAxisBoundsManual(true);
+        // set manual x bounds to have nice steps
+        graphView.getViewport().setMinX(d1.getTime());
+        graphView.getViewport().setMaxX(d3.getTime());
+        graphView.getViewport().setXAxisBoundsManual(true);
 
-// as we use dates as labels, the human rounding to nice readable numbers
-// is not necessary
-        graph.getGridLabelRenderer().setHumanRounding(false);
+        // as we use dates as labels, the human rounding to nice readable numbers
+        // is not necessary
+        graphView.getGridLabelRenderer().setHumanRounding(false);
+
+        getSocialNameAndPhoto();
 
         return view;
+    }
+
+    private void getSocialNameAndPhoto(){
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        String defaultUsername = "Username";
+        String defaultPhotoUrl = "";
+
+        userTextView.setText(sharedPref.getString(getString(R.string.preference_username), defaultUsername));
+        String photoUrl = sharedPref.getString(getString(R.string.preference_photo_url), defaultPhotoUrl);
+
+        if(photoUrl == "" || photoUrl == null){
+            profileImageView.setImageResource(R.drawable.person_flat);
+        }else {
+
+            Picasso.with(getContext())
+                    .load(photoUrl)
+                    .transform(new CircleTransform())
+                    .placeholder(R.drawable.person_flat)
+                    .error(R.drawable.person_flat)
+                    .into(profileImageView);
+        }
     }
 }
