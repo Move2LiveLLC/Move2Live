@@ -1,0 +1,14 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:drawable="@drawable/rbutton"
+        android:state_checked="true"
+        android:state_pressed="true" />
+    <item
+        android:drawable="@drawable/chk"
+        android:state_pressed="true" />
+    <item
+        android:drawable="@drawable/rbutton"
+        android:state_checked="false" />
+    <item
+        android:drawable="@drawable/chk" />
+</selector>
