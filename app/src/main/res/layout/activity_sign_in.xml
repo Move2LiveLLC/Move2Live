@@ -27,7 +27,9 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp">
+            android:layout_margin="4dp"
+            android:textColor="@color/text_color"
+            android:textColorHint="@color/text_color" >
 
             <EditText
                 android:id="@+id/email"
@@ -37,20 +39,19 @@
                 android:paddingEnd="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginBottom="10dp"
                 android:hint="@string/hint_email"
                 android:inputType="textEmailAddress"
                 android:background="@drawable/text_box"
                 android:drawableRight="@drawable/mail_icon_etxt"
-                android:drawableEnd="@drawable/mail_icon_etxt"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_color" />
+                android:drawableEnd="@drawable/mail_icon_etxt" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp">
+            android:layout_margin="4dp"
+            android:textColor="@color/text_color"
+            android:textColorHint="@color/text_color" >
 
             <EditText
                 android:id="@+id/password"
@@ -60,14 +61,12 @@
                 android:paddingStart="30dp"
                 android:paddingRight="20dp"
                 android:paddingEnd="20dp"
-                android:layout_marginBottom="10dp"
                 android:hint="@string/hint_password"
                 android:inputType="textPassword"
                 android:background="@drawable/text_box"
                 android:drawableRight="@drawable/ic_password_etxt"
-                android:drawableEnd="@drawable/ic_password_etxt"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_color" />
+                android:drawableEnd="@drawable/ic_password_etxt"/>
+
         </android.support.design.widget.TextInputLayout>
 
         <TextView
@@ -107,16 +106,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"/>
 
-        <Button
+        <TextView
             android:id="@+id/btn_register"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
-            android:background="@null"
             android:text="@string/btn_link_to_register"
             android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            android:textSize="15sp" />
+            android:textColor="@color/text_color"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>
 
     <ProgressBar
