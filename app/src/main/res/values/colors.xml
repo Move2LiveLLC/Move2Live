@@ -7,4 +7,6 @@
     <color name="light">#25a6d1</color>
     <color name="halfWhite">#dddede</color>
     <color name="white">#ffffff</color>
+
+    <color name="text_color">#dddede</color>
 </resources>

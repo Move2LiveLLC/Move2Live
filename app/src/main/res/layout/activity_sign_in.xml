@@ -5,85 +5,107 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:background="@android:color/black"
+    tools:context="com.prototype.move2live.ui.SignInActivity">
 
     <LinearLayout
         android:id="@+id/sign_in_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/background"
         android:orientation="vertical"
         android:padding="@dimen/activity_horizontal_margin">
 
         <ImageView
-            android:layout_width="120dp"
-            android:layout_height="100dp"
-            android:src="@drawable/black_logo"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:src="@drawable/logo"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/a11y_logo_description"/>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp">
 
             <EditText
                 android:id="@+id/email"
+                android:paddingLeft="30dp"
+                android:paddingStart="30dp"
+                android:paddingRight="20dp"
+                android:paddingEnd="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_marginBottom="10dp"
                 android:hint="@string/hint_email"
                 android:inputType="textEmailAddress"
-                android:textColor="@android:color/white"
-                android:textColorHint="@android:color/white" />
+                android:background="@drawable/text_box"
+                android:drawableRight="@drawable/mail_icon_etxt"
+                android:drawableEnd="@drawable/mail_icon_etxt"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_color" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp">
 
             <EditText
                 android:id="@+id/password"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
+                android:paddingLeft="30dp"
+                android:paddingStart="30dp"
+                android:paddingRight="20dp"
+                android:paddingEnd="20dp"
                 android:layout_marginBottom="10dp"
                 android:hint="@string/hint_password"
                 android:inputType="textPassword"
-                android:textColor="@android:color/white"
-                android:textColorHint="@android:color/white" />
+                android:background="@drawable/text_box"
+                android:drawableRight="@drawable/ic_password_etxt"
+                android:drawableEnd="@drawable/ic_password_etxt"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_color" />
         </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/btn_reset_password"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/btn_forgot_password"
+            android:gravity="center_horizontal"
+            android:textAllCaps="false"
+            android:textColor="@color/text_color"
+            android:clickable="true"/>
 
         <Button
             android:id="@+id/email_login_button"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@color/colorAccent"
-            android:text="@string/btn_login"
-            android:textColor="@android:color/black" />
-
-        <Button
-            android:id="@+id/btn_reset_password"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@null"
-            android:text="@string/btn_forgot_password"
+            android:layout_height="55dp"
+            android:background="@drawable/bg"
+            android:layout_margin="4dp"
             android:textAllCaps="false"
-            android:textColor="@android:color/white" />
-
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/google_login_button"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center_horizontal"/>
+            android:text="@string/btn_login"
+            android:textColor="@color/text_color"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
 
         <com.facebook.login.widget.LoginButton
             android:id="@+id/facebook_login_button"
             android:layout_width="fill_parent"
-            android:layout_marginTop="20dp"
             android:layout_height="wrap_content"
+            android:layout_margin="4dp"
             android:layout_gravity="center_horizontal" />
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/google_login_button"
+            android:layout_margin="4dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"/>
 
         <Button
             android:id="@+id/btn_register"
