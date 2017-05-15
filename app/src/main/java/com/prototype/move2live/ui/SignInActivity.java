@@ -68,6 +68,7 @@ public class SignInActivity extends AppCompatActivity implements
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     private CallbackManager mCallbackManager;
+    public String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
