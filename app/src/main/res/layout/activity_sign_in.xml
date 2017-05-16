@@ -110,6 +110,7 @@
             android:id="@+id/btn_register"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:text="@string/btn_link_to_register"
             android:textAllCaps="false"
             android:textColor="@color/text_color"

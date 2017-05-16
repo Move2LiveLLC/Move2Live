@@ -4,24 +4,24 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_home_black_24dp"
+            android:icon="@drawable/ic_action_home"
             android:title="@string/nav_menu_home"
             android:checked="true"/>
         <item
             android:id="@+id/nav_community"
-            android:icon="@drawable/ic_people_black_24dp"
+            android:icon="@drawable/ic_action_community"
             android:title="@string/nav_menu_community"/>
         <item
             android:id="@+id/nav_objectives"
-            android:icon="@drawable/ic_gps_fixed_black_24dp"
+            android:icon="@drawable/ic_objectives"
             android:title="@string/nav_menu_objectives" />
         <item
             android:id="@+id/nav_blog"
-            android:icon="@drawable/ic_create_black_24dp"
+            android:icon="@drawable/ic_blog"
             android:title="@string/nav_menu_blog" />
         <item
             android:id="@+id/nav_about"
-            android:icon="@drawable/ic_error_outline_black_24dp"
+            android:icon="@drawable/ic_about_us"
             android:title="@string/nav_menu_about" />
     </group>
 
